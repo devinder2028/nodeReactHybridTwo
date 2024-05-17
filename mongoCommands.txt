@@ -1,0 +1,64 @@
+db.products.countDocuments()
+
+db.products.countDocuments({'price':{$gt:500}})
+
+db.products.findOne({title:"Key Holder"})
+
+db.products.find()
+
+db.products.drop()
+
+db.products.find({title:{$eq:"Key Holder"}})
+
+db.products.find({rating:{$gt:4}})
+
+//and --shortcut
+db.products.find({rating:{$gt:4.5},price:{$eq:30}})
+
+also for and 
+db.products.find({$and:[{rating:{$gt:4.9}},{price:{$eq:30}}]})
+
+//or
+
+db.products.find({$or:[{rating:{$gt:4.9}},{price:{$eq:30}}]})
+
+// cursor functions --> applied on result  (example sort,limit)
+
+// also sort assending
+db.products.find({$or:[{rating:{$gt:4.9}},{price:{$eq:30}}]}).sort({"stock":1})
+
+//------------------update-----and upsert (if it is not then isert new )  ----------------
+
+db.collections.updateOne({arguemnt1},{argument2},{argument3})
+
+db.products.updateOne({'id':1},{$set:{'price':888}})
+
+db.products.updateOne({'id':1},{$set:{'amount':888}},{'upsert':true})
+
+db.products.updateMany({'id':{$gt:3}},{$set:{'price':888}})
+
+//---------------------  Replace   -----------------------------
+
+db.products.replaceOne({'id':3},{'price':888});
+
+//---------------    delete  ---------------------
+
+db.products.delteOne({'_id':ObjectId('5353535334jjjj454')})
+db.products.delteOne({id:1})
+db.products.delteMany({price:999})
+
+//----------------------------------------------------------
+//projection -- donot show whole data
+
+ db.products.find({'price':{$gt:1400}})    --- full data
+
+// show only title and price
+ db.products.find({'price':{$gt:1400}},{'title':1,'price':1})
+
+ //donot show id
+  db.products.find({'price':{$gt:1400}},{'title':1,'price':1,'_id':0})
+
+  //password
+  1234
+  //user id
+  hostel  
